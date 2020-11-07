@@ -1255,7 +1255,7 @@ public class LOActivity extends AppCompatActivity {
 
                         if (clipboardData != null) {
                             LOActivity.this.setClipboardContent(clipboardData);
-                            LOActivity.this.postUnoCommand(".uno:Paste", null, false);
+                            return true;
                         } else {
                             // Couldn't get data from the clipboard file, but we can still paste html
                             byte[] htmlByteArray = html.getBytes(Charset.forName("UTF-8"));
@@ -1295,8 +1295,8 @@ public class LOActivity extends AppCompatActivity {
         if (clipDesc.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
             final ClipData.Item clipItem = clipData.getItemAt(0);
             String text = clipItem.getText().toString();
-            byte[] textByteArray = text.getBytes(Charset.forName("UTF-16"));
-            LOActivity.this.paste("text/plain;charset=utf-16", textByteArray);
+            byte[] textByteArray = text.getBytes(Charset.forName("UTF-8"));
+            LOActivity.this.paste("text/plain;charset=utf-8", textByteArray);
         }
 
         return false;
